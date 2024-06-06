@@ -1,18 +1,56 @@
 /*
 Theme Name: Natalie-Mota-Photo
 Theme URI: https://wordpress.org/themes/twentytwentyone/
-Author: the WordPress team
+Author: COLIN Guillaume
 Author URI: https://wordpress.org/
-Description: Twenty Twenty-One is a blank canvas for your ideas and it makes the block editor your best brush. With new block patterns, which allow you to create a beautiful layout in a matter of seconds, this theme’s soft colors and eye-catching — yet timeless — design will let your work shine. Take it for a spin! See how Twenty Twenty-One elevates your portfolio, business website, or personal blog.
-Requires at least: 5.3
-Tested up to: 6.5
-Requires PHP: 5.6
+Description: Thème enfant Twenty Twenty-One pour le site MotaPhoto de Natalie Mota afin se faire connaître et pour partager les séries de photos avec ses clients.
+Ils peuvent ensuite en acheter les droits, les faire imprimer, ou les commander en format HD.
 Version: 2.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: twentytwentyone
-Tags: one-column, accessibility-ready, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, blog, portfolio
-
-Twenty Twenty-One WordPress Theme, (C) 2020 WordPress.org
-Twenty Twenty-One is distributed under the terms of the GNU GPL.
 */
+
+/* ............................................................................................................................. */
+
+/* The Modal */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ............................................................................................................................. */
