@@ -12,6 +12,39 @@ Text Domain: twentytwentyone
 */
 
 /* ............................................................................................................................. */
+/*Menu Mobile */
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    background: #000;
+    display: block;
+    height: 3px;
+    margin: 5px 0;
+    width: 25px;
+}
+
+.main-navigation {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .main-navigation {
+        display: none;
+    }
+    .main-navigation.toggled {
+        display: block;
+    }
+}
+
+
+/* ............................................................................................................................. */
 
 /* The Modal */
 

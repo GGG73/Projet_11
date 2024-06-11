@@ -1,4 +1,4 @@
- <!-- Trigger/Open The Modal -->
+<!-- Trigger/Open The Modal -->
  <button id="myBtn">Open Modal</button>
 
 <!-- The Modal -->

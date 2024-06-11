@@ -60,7 +60,7 @@ function twenty_twenty_one_get_social_link_svg( $uri, $size = 24 ) {
  * @param string   $item_output The menu item's starting HTML output.
  * @param WP_Post  $item        Menu item data object.
  * @param int      $depth       Depth of the menu. Used for padding.
- * @param stdClass $args        An object of wp_nav_menu() arguments.
+ * @param stdClass $args        An object of () arguments.
  * @return string The menu item output with social icon.
  */
 function twenty_twenty_one_nav_menu_social_icons( $item_output, $item, $depth, $args ) {

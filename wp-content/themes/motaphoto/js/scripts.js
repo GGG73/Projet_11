@@ -1,3 +1,35 @@
+//Menu burger//
+
+document.addEventListener('DOMContentLoaded', function() {
+    var menuToggle = document.getElementById('menu-toggle');
+    var navMenu = document.getElementById('site-navigation');
+
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('toggled');
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //MODAL//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Get the modal
