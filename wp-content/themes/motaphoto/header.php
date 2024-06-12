@@ -30,7 +30,8 @@
                 'menu_id'        => 'primary-menu',
             )); /*Menu header et footer*/
             ?>
+            <p>CONTACT</p>
         </nav>
-        <p>CONTACT</p>
+        
     </header>
 <body>
