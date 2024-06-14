@@ -28,6 +28,8 @@ function enqueue_child_theme_scripts() {
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_scripts');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//afficher Post type Services plugin pour Photos
+
 function Nathalie_Mota_Photo_request_services() {
     $query = new WP_Query([
         'post-type' => 'services',
@@ -45,7 +47,7 @@ add_action('wp_ajax_request_services', 'Nathalie_Mota_Photo_request_services');
 add_action('wp_ajax_nopriv_request_services', 'Nathalie_Mota_Photo_request_services');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//image hero
+//Image hero header
 
 function theme_customizer_settings($wp_customize) {
     // Ajout d'une section pour l'image hero
@@ -65,33 +67,32 @@ function theme_customizer_settings($wp_customize) {
         'section'  => 'hero_section',
         'mime_type' => 'image',
     )));
+
+    // Ajout d'un paramètre et d'un contrôle pour le titre de l'image hero
+    $wp_customize->add_setting('hero_title', array(
+        'default' => __('PHOTOGRAPHE EVENT', 'theme-text-domain'),
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control('hero_title', array(
+        'label'    => __('Titre de l\'image Hero', 'theme-text-domain'),
+        'section'  => 'hero_section',
+        'type'     => 'text',
+    ));
 }
 add_action('customize_register', 'theme_customizer_settings');
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Charger police Poppins 300
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Polices Poppins et Space Mono
 function enqueue_google_fonts() {
     // Préconnecter aux serveurs Google Fonts
-    wp_enqueue_style('preconnect-google-fonts', 'https://fonts.googleapis.com', [], null);
-    wp_enqueue_style('preconnect-gstatic', 'https://fonts.gstatic.com', [], null);
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
 
-    // Inclure la police Poppins
-    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap', [], null);
+    // Inclure les polices Google Fonts
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Space+Mono:ital,wght@1,400;1,700&display=swap', [], null);
 }
-add_action('wp_enqueue_scripts', 'enqueue_google_fonts');
-
-//Charger police Space Mono 400 400 it 700 it
-function enqueue_space_mono_font() {
-    // Préconnecter aux serveurs Google Fonts
-    wp_enqueue_style('preconnect-google-fonts-space-mono', 'https://fonts.googleapis.com', [], null);
-    wp_enqueue_style('preconnect-gstatic-space-mono', 'https://fonts.gstatic.com', ['crossorigin' => 'anonymous'], null);
-
-    // Inclure la police Space Mono
-    wp_enqueue_style('google-fonts-space-mono', 'https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@1,400;1,700&display=swap', [], null);
-}
-add_action('wp_enqueue_scripts', 'enqueue_space_mono_font');
-
-
+add_action('wp_head', 'enqueue_google_fonts');
 
 ?>

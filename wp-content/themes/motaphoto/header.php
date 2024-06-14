@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <?php if (has_site_icon()) : ?>
         <link rel="icon" href="<?php echo esc_url(get_site_icon_url()); /*Icone site*/?>">
     <?php endif; ?>
@@ -32,6 +33,23 @@
             ?>
             <p>CONTACT</p>
         </nav>
+        
+
+<?php
+    $hero_image_id = get_theme_mod('hero_image');/*Image hero header*/
+    $hero_title = get_theme_mod('hero_title', __('PHOTOGRAPHE EVENT', 'theme-text-domain'));/*Titre hero header*/
+
+    if ($hero_image_id) :
+        $hero_image_url = wp_get_attachment_url($hero_image_id);
+?>
+        <div class="hero" style="background-image: url('<?php echo esc_url($hero_image_url); ?>');">
+            <div class="hero-content">
+                <!-- Affiche le titre récupéré depuis le Customizer -->
+                <h1><?php echo esc_html($hero_title); ?></h1>
+            </div>
+        </div>
+<?php endif; ?>
+
         
     </header>
 <body>
