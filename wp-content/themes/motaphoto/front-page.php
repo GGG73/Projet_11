@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-
+<div class="filtre-container">
 <form id="filter-form">
     <!-- Filtrer par type d'événement -->
     <label for="event-type">CATÉGORIES</label>
@@ -25,7 +25,6 @@
         <option value="desc">À partir des plus anciennes</option>
     </select>
 </form>
-
-
+</div>
 
 <?php get_footer(); ?>

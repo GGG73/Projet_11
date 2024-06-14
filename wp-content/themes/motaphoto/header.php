@@ -16,7 +16,8 @@
                 the_custom_logo();/*Logo Nathalie Mota*/
             }
             ?>                     
-        </div>
+        
+
         <!--Menu mobile-->
         <div class="menu-toggle" id="menu-toggle">
             <span></span>
@@ -33,8 +34,7 @@
             ?>
             <p>CONTACT</p>
         </nav>
-        
-
+        </div>
 <?php
     $hero_image_id = get_theme_mod('hero_image');/*Image hero header*/
     $hero_title = get_theme_mod('hero_title', __('PHOTOGRAPHE EVENT', 'theme-text-domain'));/*Titre hero header*/

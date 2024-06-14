@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php  //pour apellez la page single get_template_part('single');?>
+
 <div class="container">
 <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
