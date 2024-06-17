@@ -27,4 +27,7 @@
 </form>
 </div>
 
+Les photos seront ici.
+
+
 <?php get_footer(); ?>

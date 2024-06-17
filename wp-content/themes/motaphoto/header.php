@@ -32,7 +32,14 @@
                 'menu_id'        => 'primary-menu',
             )); /*Menu header et footer*/
             ?>
-            <p>CONTACT</p>
+        <button id="myBtn"><p>CONTACT</p></button>
+            <div id="myModal" class="modal">
+            <div class="modal-content">
+            <span class="close">x</span>
+      
+        <?php echo do_shortcode('[contact-form-7 id="529fc27" title="Modale Contact"]') ?>
+        </div>
+        </div>
         </nav>
         </div>
 <?php

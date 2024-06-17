@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php 
+
+/**Template Name: Single */
+
+get_header(); ?>
 
 <div class="container">
 <div id="primary" class="content-area">
