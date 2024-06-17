@@ -26,17 +26,17 @@
         </div>
 
         <nav id="site-navigation" class="main-navigation"><!--site-navigation -->
-            <?php
+            <?php /*Menu header et footer*/
             wp_nav_menu(array(
                 'theme_location' => 'primary',
                 'menu_id'        => 'primary-menu',
-            )); /*Menu header et footer*/
+            )); 
             ?>
         <button id="myBtn"><p>CONTACT</p></button>
             <div id="myModal" class="modal">
             <div class="modal-content">
             <span class="close">x</span>
-
+             
             <?php $image_url = get_stylesheet_directory_uri() . '/assets/Contact-header.png'; ?>
             <img src="<?php echo esc_url($image_url); ?>" alt="Bannière de contact">
             
