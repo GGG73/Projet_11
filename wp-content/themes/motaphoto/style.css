@@ -131,7 +131,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Ajustez l'opacité selon vos besoins */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
 }
 
@@ -172,7 +172,7 @@ p {
 
 
 /* ............................................................................................................................. */
-/* The Modal */
+/*Modale de contact*/
 
 .modal {
     display: block; 
@@ -187,16 +187,21 @@ p {
     background-color: rgba(0,0,0,0.4); 
 }
 
-
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and center */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* screen size */
+    width: 80%; 
 }
 
-/* The Close Button */
+.modal-content img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
 .close {
     color: #aaa;
     float: right;

@@ -36,12 +36,18 @@
             <div id="myModal" class="modal">
             <div class="modal-content">
             <span class="close">x</span>
-      
-        <?php echo do_shortcode('[contact-form-7 id="529fc27" title="Modale Contact"]') ?>
-        </div>
-        </div>
+
+            <?php $image_url = get_stylesheet_directory_uri() . '/assets/Contact-header.png'; ?>
+            <img src="<?php echo esc_url($image_url); ?>" alt="Bannière de contact">
+            
+            <?php echo do_shortcode('[contact-form-7 id="529fc27" title="Modale Contact"]') ?>
+            </div>
+            </div>
         </nav>
         </div>
+
+
+
 <?php
     $hero_image_id = get_theme_mod('hero_image');/*Image hero header*/
     $hero_title = get_theme_mod('hero_title', __('PHOTOGRAPHE EVENT', 'theme-text-domain'));/*Titre hero header*/
