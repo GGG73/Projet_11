@@ -16,7 +16,6 @@ Text Domain: twentytwentyone
     .site {
         max-width: 1440px;
         margin: 0 auto; /* Centre le contenu */
-        
     }
 }
 
@@ -39,16 +38,17 @@ Text Domain: twentytwentyone
 }
 
 /* ............................................................................................................................. */
+body {
+    max-width: 1440px; 
+    margin: 0 auto; 
+}
+
+
 .site{
     display: flex;
     align-items: center;
+    height: 80px;
 }
-#primary-menu{
-    display: flex;
-    align-items: center;
-}
-
-
 
 h1 {/*Version mobile size: 27.59px;
     line-height: 40.86px;*/
@@ -103,11 +103,87 @@ p {
     line-height: 18px;
 }
 
+.custom-logo{
+    width: 216px;
+    height: 14px;
+    padding-left: 146px;
+}
+
+.custom-logo-link{
+    width: 60%;
+}
 
 /* ............................................................................................................................. */
+/*Menu Header*/
+
+/*Menu primary-menu*/
+#primary-menu{
+    display: flex;
+    align-items: center;
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20.73px;
+    letter-spacing: 10%;
+    color: #000;
+}
+
+/*Bouton de contact menu MyBtn*/
+#myBtn{
+    border: none;
+    background-color: #fff;
+}
+
+#myBtn:hover{
+    cursor: pointer;
+    border: none;
+}
+
+/*Menu Footer*/
+
+/*Menu footer-menu*/
+#menu-footer-menu{
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20.73px;
+    letter-spacing: 10%;   
+    color: #000;   
+    display: flex;
+    align-items: center;
+}
+
+/*Menu footer en ligne*/
+body div:nth-child(8){
+    display: flex;
+    width: 100%;
+    height: 40px;
+}
+
+#menu-item-63{
+    align-content: center;
+    display: block;
+    text-align: center;
+}
+
+#menu-item-70{
+    align-content: center;
+    display: block;
+    text-align: center;
+}
+
+body > div:nth-child(8) > p:nth-child(2){
+    align-content: center;
+    display: block;
+    text-align: center;
+}
+/* ............................................................................................................................. */
+/*Image hero header*/
 
 .hero {
-    width: 1440px;
+    width: 100%;
     height: 962px; 
     background-size: cover;
     background-position: center;
@@ -135,7 +211,9 @@ p {
     z-index: 0;
 }
 
-
+.hero-content h1{
+    gap: 10px;
+}
 /* ............................................................................................................................. */
 /*Menu Mobile */
 
@@ -156,7 +234,31 @@ p {
 .main-navigation {
     display: flex;
     align-items: center;
+    color: #000;
 }
+
+#primary-menu a {
+    text-decoration: none; /* Enlève le soulignement des liens */
+    color: #000;
+}
+
+#primary-menu li {
+    list-style: none; /* Enlève les points de liste */
+}
+
+#menu-footer-menu a{
+    text-decoration: none; /* Enlève le soulignement des liens */
+    color: #000;
+}
+
+#menu-footer-menu li {
+    list-style: none; /* Enlève les points de liste */
+}
+
+body > div:nth-child(7){
+    display: flex;
+}
+
 
 @media (max-width: 768px) {
     .menu-toggle {
@@ -175,7 +277,7 @@ p {
 /*Modale de contact*/
 
 .modal {
-    display: block; 
+    display: none; 
     position: fixed; 
     z-index: 2; 
     left: 0;
@@ -185,7 +287,7 @@ p {
     overflow: auto; 
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
-    overflow: hidden;
+   
 }
 
 .modal-content {
@@ -195,7 +297,7 @@ p {
     border: 5px solid #000;
     width: 597px; 
     height: 769px;
-    text-align: center;
+    overflow: hidden;
 }
 
 .close {
@@ -215,9 +317,8 @@ p {
 /*Formulaire de contact*/
 
 /*Image bannière formulaire de contact*/
-.modal-content img:nth-child(2){
-    display: inline-block; /* Permet de centrer verticalement l'image */
-    vertical-align: middle;
+.modal-content img{
+    display: block; 
     margin: 0 auto;
     width: 885.96px;
     height: 106.05px;
@@ -233,19 +334,53 @@ p {
     align-items: center;
 }
 
+/*Label Formulaire de contact*/
+.wpcf7-form label{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #313144;
+}
+
+/*Input Formulaire de contact*/
+.wpcf7-form input{
+    width: 263px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #B8BBC2;
+}
+
 /*Message*/
 textarea.wpcf7-form-control {
-    width: 302.33px;
+    width: 263px;
+    height: 210px;
+    border-radius: 8px;
+    border: 1px solid #B8BBC2;
 }
 
 /*Bouton Envoyer*/
 .wpcf7-form p:nth-child(6){
     justify-content: center;
+    align-items: center;
     display: flex;
+    width: 263px;
+    height: 50px;
+    border: none;
+    border-radius: 2px;
+    border: none;
+    padding: 8px 15px 8px 15px;
+    color: #D8D8D8;
+    
 }
-/* ............................................................................................................................. */
-/*Bouton de contact menu MyBtn*/
 
-#myBtn:hover{
-    cursor: pointer;
+/*Spinner (proche bouton envoyer) Formulaire de contact*/
+.wpcf7-spinner{
+    display: none;
 }
+
+/* ............................................................................................................................. */
+
+
+/* ............................................................................................................................. */

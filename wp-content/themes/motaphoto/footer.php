@@ -1,13 +1,14 @@
 
 <?php wp_footer () ?>
-</div>
+
 </body>
+<div>
 <?php wp_nav_menu([
     'theme_location' => 'footer',
 ]);
 ?>
 
 <p>TOUS DROITS RÉSERVÉS</p>
-
+</div>
 
 </html>
