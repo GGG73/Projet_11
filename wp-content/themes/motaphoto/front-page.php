@@ -27,7 +27,21 @@
 </form>
 </div>
 
-Les photos seront ici.
+<?php
+$args = array (
+    "post_type" => "services", 
+    "posts_per_page" => 8, 
+    "orderby" => "rand",
+);
 
+$query = new WP_Query($args);
+
+if ($query -> have_posts()){
+   $query -> the_post();
+   the_title ("<h2>","</h2>");
+
+};
+ 
+?>
 
 <?php get_footer(); ?>

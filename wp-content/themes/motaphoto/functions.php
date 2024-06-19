@@ -28,23 +28,9 @@ function enqueue_child_theme_scripts() {
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_scripts');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//afficher Post type Services plugin pour Photos
 
-function Nathalie_Mota_Photo_request_services() {
-    $query = new WP_Query([
-        'post-type' => 'services',
-        'post_per page' => 8
-    ]);//Services photo
 
-    if($query->have-posts()) {
-        wp_send_json($query);
-    } else {
-        wp_send_json(false);
-    }
-    wp_die();
-}
-add_action('wp_ajax_request_services', 'Nathalie_Mota_Photo_request_services');
-add_action('wp_ajax_nopriv_request_services', 'Nathalie_Mota_Photo_request_services');
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Image hero header
