@@ -28,3 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Traiter la requête AJAX pour mettre à jour le contenu
+jQuery(function($) {
+    $('#filter-form').on('change', 'select', function() {
+        var formData = $('#filter-form').serialize();
+        
+        $.ajax({
+            url: ajaxurl, // URL de l'action AJAX définie par WordPress
+            type: 'GET',
+            data: formData + '&action=custom_filter_photos', // Ajoutez l'action et les données du formulaire
+            beforeSend: function() {},
+            success: function(response) {
+                // Mettre à jour la grille de photos avec les nouveaux résultats
+                $('.photo-grid').html(response);
+            },
+            error: function() {
+                // Gérer les erreurs si nécessaire
+                $('.photo-grid').html('<p>Une erreur est survenue.</p>');
+            }
+        });
+    });
+});
