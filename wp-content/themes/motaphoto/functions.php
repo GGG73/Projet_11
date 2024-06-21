@@ -6,6 +6,8 @@ function Nathalie_Mota_Photo_supports (){
 add_action('after_setup_theme', 'Nathalie_Mota_Photo_supports');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Style du thème
+
 function theme_enqueue_styles() {  
     //style du thème enfant
     wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css');
@@ -13,6 +15,8 @@ function theme_enqueue_styles() {
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Menu
+
 function register_primary_menu() {
     //Menu
 	register_nav_menu( 'primary', __( 'Primary Menu', 'theme-text-domain' ) );
@@ -21,6 +25,8 @@ function register_primary_menu() {
 add_action( 'after_setup_theme', 'register_primary_menu');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Script JS et jQuery
+
 function enqueue_child_theme_scripts() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('child-script', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
@@ -29,7 +35,7 @@ add_action('wp_enqueue_scripts', 'enqueue_child_theme_scripts');
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Image hero header
+//Image hero header + Titre
 
 function theme_customizer_settings($wp_customize) {
     // Ajout d'une section pour l'image hero
@@ -67,6 +73,7 @@ add_action('customize_register', 'theme_customizer_settings');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Polices Poppins et Space Mono
+
 function enqueue_google_fonts() {
     // Préconnecter aux serveurs Google Fonts
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
@@ -140,10 +147,25 @@ function custom_filter_photos() {
             $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
             if ($image_url) :
                 $permalink = get_permalink();
+                $categories = get_the_terms(get_the_ID(), 'categorie');
+                $category_name = !empty($categories) ? esc_html($categories[0]->name) : '';
+                $ref = get_field('reference'); // champ personnalisé references
         ?>
-                <a href="<?php echo esc_url($permalink); ?>" class="photo-item">
-                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
-                </a>
+                <div class="photo-item">
+                    <a href="<?php echo esc_url($permalink); ?>" class="photo-link">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <a href="<?php echo esc_url($image_url); ?>" class="fullscreen-icon" target="_blank">🔍</a>
+                                <a href="<?php echo esc_url($permalink); ?>" class="info-icon">👁️</a>
+                                <div class="photo-info">
+                                    <span class="photo-ref"><?php echo esc_html($ref); ?></span>
+                                    <span class="photo-category"><?php echo esc_html($category_name); ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
         <?php
             endif;
         endwhile;
@@ -156,10 +178,10 @@ function custom_filter_photos() {
         echo '<p>Aucune photo trouvée.</p>';
     endif;
 
-    wp_die(); // Terminer le processus WordPress
+    wp_die(); // Cette fonction est importante pour terminer proprement la requête AJAX.
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ?>

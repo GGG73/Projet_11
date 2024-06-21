@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php 
-/** Template Name: Single */
-/** Template Post Type: photo */
+    /** Template Name: Single */
+    /** Template Post Type: photo */
     get_header(); ?>
-
 
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-    <?php get_template_part('content'); ?>
+        <?php get_template_part('content'); ?>
 
         <?php
         // Start the loop
@@ -28,10 +27,7 @@
         ?>
 
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-             
-                    <?php the_title('<h1>', '</h1>'); ?>
-               
-
+                <?php the_title('<h1>', '</h1>'); ?>
                 <div class="entry-content">
                     <?php
                     // Afficher l'image mise en avant
@@ -41,19 +37,20 @@
 
                     // Afficher les détails sous forme de tableau
                     if ($references || $type || $annee) {
-                    
-                        if ($references) echo '<p>,</p> ' . esc_html($references) . '<br>';
-                        if ($type) echo '<p>,p> ' . esc_html($type) . '<br>';
-                        if ($annee) echo '<p>,</p> ' . esc_html($annee);
+                        echo '<p>';
+                        if ($references) echo esc_html($references) . '<br>';
+                        if ($type) echo esc_html($type) . '<br>';
+                        if ($annee) echo esc_html($annee);
                         echo '</p>';
                     }
                     ?>
                 </div>
             </article>
-            <?php
+        <?php
         // End the loop
         endwhile;
         ?> 
+    </main><!-- #main -->
+</div><!-- #primary -->
 
 <?php get_footer(); ?>
-

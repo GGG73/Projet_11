@@ -85,10 +85,29 @@
                 while ($query->have_posts()) : $query->the_post();
                     $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
                     if ($image_url) :
+                        $permalink = get_permalink();
+                        $categories = get_the_terms(get_the_ID(), 'categorie');// Récupérer la catégorie de la photo
+                        $category_name = !empty($categories) ? esc_html($categories[0]->name) : '';
+                        $ref = get_field('reference'); // Récupérer la référence de la photo
+
+                        // Afficher la référence dans un attribut data
+                        $data_attr = 'data-ref="' . esc_attr($ref) . '"';
             ?>
-                        <a href="<?php the_permalink(); ?>" class="photo-item">
-                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
-                        </a>
+                        <div class="photo-item">
+                            <a href="<?php echo esc_url($permalink); ?>" class="photo-link">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <a href="<?php echo esc_url($image_url); ?>" class="fullscreen-icon" target="_blank">🔍</a>
+                                        <a href="<?php echo esc_url($permalink); ?>" class="info-icon">👁️</a>
+                                        <div class="photo-info" <?php echo $data_attr; ?>>
+                                            <span class="photo-category"><?php echo esc_html($category_name); ?></span>
+                                            <span class="photo-hover-info"><?php echo esc_html($ref); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
             <?php
                     endif;
                 endwhile;

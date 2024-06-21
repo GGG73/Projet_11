@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Modale de contact Menu
+
 document.addEventListener('DOMContentLoaded', function() {
     let modal = document.getElementById('myModal');
     let btn = document.getElementById('menu-item-144');
@@ -29,8 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Traiter la requête AJAX pour mettre à jour le contenu
+
 jQuery(function($) {
     $('#filter-form').on('change', 'select', function() {
         var formData = $('#filter-form').serialize();
@@ -53,3 +56,30 @@ jQuery(function($) {
 });
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Affiché la lightbox suite au clic sur le logo plein ecran dans la photo 
+
+document.addEventListener('DOMContentLoaded', function () {
+    let lightbox = document.getElementById('lightbox');
+    let lightboxImg = document.getElementById('lightbox-img');
+    let closeBtn = document.getElementsByClassName('close')[0];
+    let images = document.querySelectorAll('.fullscreen-icon');
+
+    images.forEach(function (image) {
+        image.addEventListener('click', function (event) {
+            event.preventDefault();
+            lightbox.style.display = 'flex';
+            lightboxImg.src = this.getAttribute('href');
+        });
+    });
+
+    closeBtn.addEventListener('click', function () {
+        lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+});
