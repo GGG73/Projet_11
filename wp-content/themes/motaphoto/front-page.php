@@ -1,11 +1,13 @@
 <?php get_header(); ?>
 
+<div id="primary" class="content-area">
+    <main id="main" class="site-main">
+        
 <div class="filtre-container">
     <form id="filter-form">
         <!-- Filtrer par catégories -->
-        <label for="event-type">Catégories</label>
         <select id="event-type" name="event_type">
-            <option value=""></option>
+            <option value="" disabled selected>CATÉGORIES</option>
             <?php
             $terms = get_terms(array(
                 'taxonomy' => 'categorie',
@@ -19,9 +21,8 @@
         </select>
 
         <!-- Filtrer par formats -->
-        <label for="image-format">Formats</label>
         <select id="image-format" name="image_format">
-            <option value=""></option>
+            <option value="" disabled selected>FORMATS</option>
             <?php
             $format_terms = get_terms(array(
                 'taxonomy' => 'format',
@@ -35,16 +36,15 @@
         </select>
 
         <!-- Trier par date -->
-        <label for="sort-order">Trier par</label>
-        <select id="sort-order" name="sort_order">
+        <select id="sort-order" name="sort_order" style="margin-left: auto;">
+            <option value="" disabled selected>TRIER PAR</option>
             <option value="desc">À partir des plus récentes</option>
             <option value="asc">À partir des plus anciennes</option>
         </select>
     </form>
 </div>
 
-<div id="primary" class="content-area">
-    <main id="main" class="site-main">
+
         <div class="photo-grid">
             <?php
             $args = array(
@@ -86,7 +86,7 @@
                     $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
                     if ($image_url) :
                         $permalink = get_permalink();
-                        $categories = get_the_terms(get_the_ID(), 'categorie');// Récupérer la catégorie de la photo
+                        $categories = get_the_terms(get_the_ID(), 'categorie'); // Récupérer la catégorie de la photo
                         $category_name = !empty($categories) ? esc_html($categories[0]->name) : '';
                         $ref = get_field('reference'); // Récupérer la référence de la photo
 

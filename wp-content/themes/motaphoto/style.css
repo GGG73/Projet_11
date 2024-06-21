@@ -291,7 +291,7 @@ nav ul li {
     overflow: hidden;
 }
 
-/*Formulaire de contact*/
+/*Formulaire de contact Modal*/
 
 /*Image bannière formulaire de contact*/
 .modal-content img{
@@ -361,17 +361,24 @@ textarea.wpcf7-form-control {
 }
 
 /* ............................................................................................................................. */
-/*Photo , overlay, hover*/
+/*Photo, overlay, hover (Front Page)*/
 
 .photo-item {
     position: relative;
     display: inline-block;
+    overflow: hidden; 
+    position: relative;
+
 }
 
 .photo-item img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Ajuste l'image pour remplir le conteneur en conservant son ratio d'aspect */
+    position: absolute; /* Positionne l'image pour couvrir entièrement le conteneur */
+    top: 0;
+    left: 0;
 }
 
 .overlay {
@@ -408,9 +415,8 @@ textarea.wpcf7-form-control {
 
 .photo-info {
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
     left: 10px;
-    background: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 5px;
     display: none;
@@ -420,11 +426,15 @@ textarea.wpcf7-form-control {
     display: block;
 }
 
-.photo-ref,
-.photo-category {
-    background: rgba(0, 0, 0, 0.7);
+.photo-ref{
     padding: 5px;
-    display: block; /* Assurez-vous que les spans sont des blocs pour l'affichage correct */
+    display: block;
+}
+
+.photo-category {
+   
+    padding: 5px;
+    display: block; 
 }
 
 
@@ -468,4 +478,40 @@ textarea.wpcf7-form-control {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* ............................................................................................................................. */
+/*Filtres*/
+
+.filtre-container{
+    max-width: 1148px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 162px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+#event-type, #image-format, #sort-order{
+    width: 260px;
+    height: 43px;
+    padding: 11px 18px 11px 18px;
+    margin-right: 10px;
+}
+
+/* ............................................................................................................................. */
+/*Photos*/
+
+/*Bloc photos acceuil */
+.photo-grid{
+    width: 1148px;
+    align-items: center;
+    margin: 0 auto; 
+}
+
+div.photo-item{
+    width: 564px;
+    height: 495px;
 }
