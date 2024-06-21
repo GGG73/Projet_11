@@ -160,6 +160,8 @@ nav ul li {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+    height: 40px;
+    align-content: center;
 }
 
 /*Menu footer en ligne*/

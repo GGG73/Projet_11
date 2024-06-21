@@ -77,10 +77,27 @@ function enqueue_google_fonts() {
 }
 add_action('wp_head', 'enqueue_google_fonts');
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// AJAX
+//AJAX
+
+// Charge les scripts et localise ajaxurl
+function motaphoto_enqueue_scripts() {
+    wp_enqueue_script('motaphoto-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
+    
+    // Localiser ajaxurl pour le frontend
+    wp_localize_script('motaphoto-scripts', 'ajax_object', array(
+        'ajaxurl' => admin_url('admin-ajax.php')
+    ));
+}
+add_action('wp_enqueue_scripts', 'motaphoto_enqueue_scripts');
+
+// Gestionnaire AJAX pour les utilisateurs connectés
 add_action('wp_ajax_custom_filter_photos', 'custom_filter_photos');
+
+// Gestionnaire AJAX pour les utilisateurs non connectés
 add_action('wp_ajax_nopriv_custom_filter_photos', 'custom_filter_photos');
+
 function custom_filter_photos() {
     $args = array(
         'post_type' => 'photo',
@@ -122,8 +139,9 @@ function custom_filter_photos() {
         while ($query->have_posts()) : $query->the_post();
             $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
             if ($image_url) :
+                $permalink = get_permalink();
         ?>
-                <a href="<?php the_permalink(); ?>" class="photo-item">
+                <a href="<?php echo esc_url($permalink); ?>" class="photo-item">
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
                 </a>
         <?php
@@ -141,6 +159,7 @@ function custom_filter_photos() {
     wp_die(); // Terminer le processus WordPress
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ?>

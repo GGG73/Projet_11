@@ -36,7 +36,7 @@ jQuery(function($) {
         var formData = $('#filter-form').serialize();
         
         $.ajax({
-            url: ajaxurl, // URL de l'action AJAX définie par WordPress
+            url: ajax_object.ajaxurl, // URL de l'action AJAX définie par WordPress
             type: 'GET',
             data: formData + '&action=custom_filter_photos', // Ajoutez l'action et les données du formulaire
             beforeSend: function() {},
@@ -51,3 +51,5 @@ jQuery(function($) {
         });
     });
 });
+
+
