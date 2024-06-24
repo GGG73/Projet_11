@@ -3,6 +3,11 @@ get_template_part('template_part/modal');
 
 ?>
 
+<div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+</div>
+
 <?php wp_footer(); ?>
 
 </body>

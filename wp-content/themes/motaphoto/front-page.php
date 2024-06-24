@@ -93,13 +93,18 @@
                         // Afficher la référence dans un attribut data
                         $data_attr = 'data-ref="' . esc_attr($ref) . '"';
             ?>
-                        <div class="photo-item">
-                            <a href="<?php echo esc_url($permalink); ?>" class="photo-link">
-                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
-                                <div class="overlay">
-                                    <div class="overlay-content">
-                                        <a href="<?php echo esc_url($image_url); ?>" class="fullscreen-icon" target="_blank">🔍</a>
-                                        <a href="<?php echo esc_url($permalink); ?>" class="info-icon">👁️</a>
+                         <div class="photo-item">
+                    <a href="<?php echo esc_url($permalink); ?>" class="photo-link lightbox-trigger">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                            <a href="<?php echo esc_url($image_url); ?>" class="fullscreen-icon circle-icon lightbox-trigger" >
+                                    <i class="fa-solid fa-expand"></i> <!-- Icone plein écran -->
+                                </a>
+
+                                <a href="<?php echo esc_url($permalink); ?>" class="info-icon">
+                                    <i class="fa fa-eye"></i> <!-- Icone oeil -->
+                                    </a>
                                         <div class="photo-info" <?php echo $data_attr; ?>>
                                             <span class="photo-category"><?php echo esc_html($category_name); ?></span>
                                             <span class="photo-hover-info"><?php echo esc_html($ref); ?></span>
@@ -117,6 +122,11 @@
             endif;
             ?>
         </div><!-- .photo-grid -->
+
+        <div class="load-more-container">
+    <button id="load-more-button">Charger plus</button>
+        </div>
+
     </main><!-- #main -->
 </div><!-- #primary -->
 

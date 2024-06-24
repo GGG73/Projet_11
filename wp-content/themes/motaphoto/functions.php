@@ -1,5 +1,6 @@
 <?php
-function Nathalie_Mota_Photo_supports (){
+//Logo du site
+function Nathalie_Mota_Photo_supports() {
     //Logo
     add_theme_support('custom-logo');
 }
@@ -7,36 +8,33 @@ add_action('after_setup_theme', 'Nathalie_Mota_Photo_supports');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Style du thème
-
-function theme_enqueue_styles() {  
+function theme_enqueue_styles() {
     //style du thème enfant
     wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css');
+    // Font Awesome
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Menu
-
 function register_primary_menu() {
     //Menu
-	register_nav_menu( 'primary', __( 'Primary Menu', 'theme-text-domain' ) );
-    register_nav_menu( 'footer', __( 'Footer Menu', 'theme-text-domain' ) );
+    register_nav_menu('primary', __('Primary Menu', 'theme-text-domain'));
+    register_nav_menu('footer', __('Footer Menu', 'theme-text-domain'));
 }
-add_action( 'after_setup_theme', 'register_primary_menu');
+add_action('after_setup_theme', 'register_primary_menu');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Script JS et jQuery
-
 function enqueue_child_theme_scripts() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('child-script', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_scripts');
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Image hero header + Titre
-
 function theme_customizer_settings($wp_customize) {
     // Ajout d'une section pour l'image hero
     $wp_customize->add_section('hero_section', array(
@@ -70,10 +68,8 @@ function theme_customizer_settings($wp_customize) {
 }
 add_action('customize_register', 'theme_customizer_settings');
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Polices Poppins et Space Mono
-
 function enqueue_google_fonts() {
     // Préconnecter aux serveurs Google Fonts
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
@@ -84,14 +80,12 @@ function enqueue_google_fonts() {
 }
 add_action('wp_head', 'enqueue_google_fonts');
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //AJAX
-
 // Charge les scripts et localise ajaxurl
 function motaphoto_enqueue_scripts() {
     wp_enqueue_script('motaphoto-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
-    
+
     // Localiser ajaxurl pour le frontend
     wp_localize_script('motaphoto-scripts', 'ajax_object', array(
         'ajaxurl' => admin_url('admin-ajax.php')
@@ -152,12 +146,17 @@ function custom_filter_photos() {
                 $ref = get_field('reference'); // champ personnalisé references
         ?>
                 <div class="photo-item">
-                    <a href="<?php echo esc_url($permalink); ?>" class="photo-link">
+                    <a href="<?php echo esc_url($permalink); ?>" class="photo-link lightbox-trigger">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
                         <div class="overlay">
                             <div class="overlay-content">
-                                <a href="<?php echo esc_url($image_url); ?>" class="fullscreen-icon" target="_blank">🔍</a>
-                                <a href="<?php echo esc_url($permalink); ?>" class="info-icon">👁️</a>
+                                <a href="<?php echo esc_url($image_url); ?>" class="fullscreen-icon circle-icon lightbox-trigger">
+                                    <i class="fa-solid fa-expand"></i> <!-- Icone plein écran -->
+                                </a>
+
+                                <a href="<?php echo esc_url($permalink); ?>" class="info-icon">
+                                    <i class="fa fa-eye"></i> <!-- Icone oeil -->
+                                </a>
                                 <div class="photo-info">
                                     <span class="photo-ref"><?php echo esc_html($ref); ?></span>
                                     <span class="photo-category"><?php echo esc_html($category_name); ?></span>
@@ -180,8 +179,4 @@ function custom_filter_photos() {
 
     wp_die(); // Cette fonction est importante pour terminer proprement la requête AJAX.
 }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 ?>
