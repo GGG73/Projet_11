@@ -1,33 +1,37 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php 
-    /** Template Name: Single */
-    /** Template Post Type: photo */
-    get_header(); ?>
+<?php
+/**
+ * Template Name: Single Photo
+ * Template Post Type: photo
+ */
+
+get_header(); ?>
+<body>
+    
 
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-        <?php get_template_part('content'); ?>
-
+        sa marche !
         <?php
         // Start the loop
         while (have_posts()) :
             the_post();
 
+            // Ajouter un message pour déboguer
+            echo '<p>Debugging: Inside the loop</p>';
+
             // Récupérer les champs ACF
-            $references = get_field('references');
+            $reference = get_field('references');
             $type = get_field('type');
             $annee = get_field('annee');
 
             // Récupérer l'URL de l'image mise en avant
             $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-        ?>
 
+            // Ajouter un message pour déboguer
+            echo '<p>Debugging: Image URL - ' . $image_url . '</p>';
+        ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <?php the_title('<h1>', '</h1>'); ?>
+                <h1><?php the_title(); ?></h1>
                 <div class="entry-content">
                     <?php
                     // Afficher l'image mise en avant
@@ -36,9 +40,9 @@
                     }
 
                     // Afficher les détails sous forme de tableau
-                    if ($references || $type || $annee) {
+                    if ($reference || $type || $annee) {
                         echo '<p>';
-                        if ($references) echo esc_html($references) . '<br>';
+                        if ($reference) echo esc_html($reference) . '<br>';
                         if ($type) echo esc_html($type) . '<br>';
                         if ($annee) echo esc_html($annee);
                         echo '</p>';
@@ -49,7 +53,7 @@
         <?php
         // End the loop
         endwhile;
-        ?> 
+        ?>
     </main><!-- #main -->
 </div><!-- #primary -->
 
