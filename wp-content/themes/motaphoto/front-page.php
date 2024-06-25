@@ -94,7 +94,7 @@
                         $data_attr = 'data-ref="' . esc_attr($ref) . '"';
             ?>
                          <div class="photo-item">
-                    <a href="<?php echo esc_url($permalink); ?>" class="photo-link lightbox-trigger">
+                    <a href="<?php echo esc_url($permalink); ?>" class="photo-link">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
                         <div class="overlay">
                             <div class="overlay-content">
@@ -102,7 +102,7 @@
                                     <i class="fa-solid fa-expand"></i> <!-- Icone plein écran -->
                                 </a>
 
-                                <a href="<?php echo esc_url($permalink); ?>" class="info-icon">
+                                <a href="#" class="info-icon" data-permalink="<?php echo esc_url($permalink); ?>" >
                                     <i class="fa fa-eye"></i> <!-- Icone oeil -->
                                     </a>
                                         <div class="photo-info" <?php echo $data_attr; ?>>

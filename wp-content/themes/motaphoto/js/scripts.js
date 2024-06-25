@@ -58,28 +58,71 @@ jQuery(function($) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Affiché la lightbox suite au clic sur le logo plein ecran dans la photo 
-document.addEventListener('DOMContentLoaded', function() {
-    let lightbox = document.getElementById('lightbox');
-    let lightboxImg = document.getElementById('lightbox-img');
-    let closeBtn = document.querySelector('.close');
-    let images = document.querySelectorAll('.lightbox-trigger');
+jQuery(function($) {
+    function attachLightboxEvents() {
+        let lightbox = document.getElementById('lightbox');
+        let lightboxImg = document.getElementById('lightbox-img');
+        let closeBtn = document.querySelector('.close');
+        let fullscreenIcons = document.querySelectorAll('.fullscreen-icon');
 
-    images.forEach(function(image) {
-        image.addEventListener('click', function(event) {
-            event.preventDefault();
-            lightbox.style.display = 'flex';
-            lightboxImg.src = this.getAttribute('href');
+        fullscreenIcons.forEach(function(icon) {
+            icon.addEventListener('click', function(event) {
+                event.preventDefault();
+                lightbox.style.display = 'flex';
+                lightboxImg.src = this.getAttribute('href');
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            lightbox.style.display = 'none';
+        });
+
+        lightbox.addEventListener('click', function(event) {
+            if (event.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//AJAX pour inclure une réinitialisation des événements de clic après chaque mise à jour de la grille de photos.
+
+    $('#filter-form').on('change', 'select', function() {
+        var formData = $('#filter-form').serialize();
+        
+        $.ajax({
+            url: ajax_object.ajaxurl, // URL de l'action AJAX définie par WordPress
+            type: 'GET',
+            data: formData + '&action=custom_filter_photos', // Ajoutez l'action et les données du formulaire
+            beforeSend: function() {},
+            success: function(response) {
+                // Mettre à jour la grille de photos avec les nouveaux résultats
+                $('.photo-grid').html(response);
+
+                // Réattacher les événements de clic pour la lightbox
+                attachLightboxEvents();
+            },
+            error: function() {
+                // Gérer les erreurs si nécessaire
+                $('.photo-grid').html('<p>Une erreur est survenue.</p>');
+            }
         });
     });
 
-    closeBtn.addEventListener('click', function() {
-        lightbox.style.display = 'none';
-    });
+    // Initial attachment of events
+    attachLightboxEvents();
+});
 
-    lightbox.addEventListener('click', function(event) {
-        if (event.target === lightbox) {
-            lightbox.style.display = 'none';
-        }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Script icnoe info --> Single Page
+
+jQuery(document).ready(function($) {
+    $('.info-icon').click(function(e) {
+        e.preventDefault(); // Empêche le comportement par défaut du lien
+        var permalink = $(this).data('permalink');
+        window.location.href = permalink;
     });
 });
 

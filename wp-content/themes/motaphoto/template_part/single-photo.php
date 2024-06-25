@@ -10,25 +10,21 @@ get_header(); ?>
 
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-        sa marche !
+
         <?php
         // Start the loop
         while (have_posts()) :
             the_post();
 
-            // Ajouter un message pour déboguer
-            echo '<p>Debugging: Inside the loop</p>';
-
+            
             // Récupérer les champs ACF
-            $reference = get_field('references');
+            $reference = get_field('reference');
             $type = get_field('type');
             $annee = get_field('annee');
 
             // Récupérer l'URL de l'image mise en avant
             $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 
-            // Ajouter un message pour déboguer
-            echo '<p>Debugging: Image URL - ' . $image_url . '</p>';
         ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                 <h1><?php the_title(); ?></h1>
